@@ -13,7 +13,7 @@ const SuggestionsHeader = ({ total, sortOptions, setSortOptions }) => {
         <SortBy sortOptions={sortOptions} setSortOptions={setSortOptions} />
       </div>
       <div className="mr-6">
-        <Button>+ Add Feedback</Button>
+        <Button className="cursor-pointer">+ Add Feedback</Button>
       </div>
     </div>
   );

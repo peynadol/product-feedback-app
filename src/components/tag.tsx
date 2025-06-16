@@ -5,7 +5,7 @@ const Tag = ({ children, isActive, onClick }) => {
   return (
     <Button
       variant="tag"
-      className="px-2 py-1 text-sm font-bold"
+      className="px-2 py-1 text-sm font-bold cursor-pointer"
       onClick={onClick}
       data-state={isActive ? "active" : undefined}
     >
