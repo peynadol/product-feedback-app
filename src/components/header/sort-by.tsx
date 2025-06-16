@@ -9,15 +9,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const SortBy = () => {
+const SortBy = ({ sortOptions, setSortOptions }) => {
   return (
     <div className="flex items-center ">
       <div>
         <h3 className="text-sm font-medium">Sort by:</h3>
       </div>
-      <Select>
+      <Select value={sortOptions} onValueChange={setSortOptions}>
         <SelectTrigger className="w-[160px] border-0 font-semibold cursor-pointer">
-          <SelectValue placeholder="Select a fruit" />
+          <SelectValue />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>

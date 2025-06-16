@@ -22,12 +22,29 @@ export default function HomePage() {
     return enhanceWithCommentCount(data.productRequests);
   });
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [sortOptions, setSortOptions] = useState("most-upvotes");
 
   const filteredSuggestions = suggestions.filter((item) =>
     selectedCategory === "All"
       ? true
       : item.category.toLowerCase() === selectedCategory.toLowerCase()
   );
+
+  // using a switch for conciseness in sorting logic
+  const sortedSuggestions = [...filteredSuggestions].sort((a, b) => {
+    switch (sortOptions) {
+      case "most-upvotes":
+        return b.upvotes - a.upvotes;
+      case "least-upvotes":
+        return a.upvotes - b.upvotes;
+      case "most-comments":
+        return b.commentCount - a.commentCount;
+      case "least-comments":
+        return a.commentCount - b.commentCount;
+      default:
+        return 0;
+    }
+  });
 
   const handleUpvote = (id) => {
     setSuggestions((prevSuggestions) =>
@@ -50,12 +67,13 @@ export default function HomePage() {
 
       {/* Right column */}
       <div className="space-y-6">
-        <SuggestionsHeader total={filteredSuggestions.length} />
-
-        <FeedbackList
-          suggestions={filteredSuggestions}
-          onUpvote={handleUpvote}
+        <SuggestionsHeader
+          total={filteredSuggestions.length}
+          sortOptions={sortOptions}
+          setSortOptions={setSortOptions}
         />
+
+        <FeedbackList suggestions={sortedSuggestions} onUpvote={handleUpvote} />
       </div>
     </main>
   );
