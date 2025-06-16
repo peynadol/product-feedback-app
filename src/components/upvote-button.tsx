@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 //TODO: Implement click handler to increase the upvote count
 
 const UpvoteButton = ({ upvotes, id, onUpvote }) => {
-  console.log("UpvoteButton props:", { upvotes, id });
   return (
     <Button
       variant="upvote"
