@@ -1,10 +1,10 @@
 import React from "react";
 import { Lightbulb } from "lucide-react";
 
-const SuggestionCount = () => {
+const SuggestionCount = ({ total }) => {
   return (
     <div className="inline-flex gap-3 font-bold">
-      <Lightbulb /> <span>6 Suggestions</span>
+      <Lightbulb /> <span>{total} Suggestions</span>
     </div>
   );
 };

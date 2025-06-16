@@ -6,11 +6,11 @@ import { Button } from "../ui/button";
 //TODO: hook up suggestion count to actual data
 //TODO: implement button click handler
 
-const SuggestionsHeader = () => {
+const SuggestionsHeader = ({ total }) => {
   return (
     <div className="bg-slate w-full h-[72px] text-white flex items-center justify-between rounded-xl">
-      <div className="flex items-center gap-4 ml-6">
-        <SuggestionCount />
+      <div className="flex items-center gap-6 ml-6">
+        <SuggestionCount total={total} />
         <SortBy />
       </div>
       <div className="mr-6">

@@ -7,7 +7,7 @@ const UpvoteButton = ({ upvotes, id, onUpvote }) => {
   return (
     <Button
       variant="upvote"
-      className="items-center gap-0 py-7"
+      className="items-center gap-0 py-7 w-[50px]"
       onClick={() => onUpvote(id)}
     >
       <ChevronUp className="size-4 text-blue" />

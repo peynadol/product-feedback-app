@@ -7,7 +7,20 @@ import SuggestionsHeader from "@/components/header/suggestions-header";
 import data from "../../data.json";
 
 export default function HomePage() {
-  const [suggestions, setSuggestions] = useState(data.productRequests);
+  // add a comment count to each suggestion
+  const enhanceWithCommentCount = (suggestions) =>
+    suggestions.map((item) => {
+      const commentCount =
+        item.comments?.reduce((total, comment) => {
+          const replies = comment.replies?.length ?? 0;
+          return total + 1 + replies;
+        }, 0) ?? 0;
+      return { ...item, commentCount };
+    });
+
+  const [suggestions, setSuggestions] = useState(() => {
+    return enhanceWithCommentCount(data.productRequests);
+  });
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const filteredSuggestions = suggestions.filter((item) =>
@@ -37,7 +50,7 @@ export default function HomePage() {
 
       {/* Right column */}
       <div className="space-y-6">
-        <SuggestionsHeader />
+        <SuggestionsHeader total={filteredSuggestions.length} />
 
         <FeedbackList
           suggestions={filteredSuggestions}

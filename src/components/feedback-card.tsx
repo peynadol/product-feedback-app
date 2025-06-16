@@ -4,13 +4,6 @@ import Tag from "./tag";
 import { MessageCircle } from "lucide-react";
 
 const FeedbackCard = ({ item, onUpvote }) => {
-  // using reduce to count total comments AND replies
-  const commentCount =
-    item.comments?.reduce((total, comment) => {
-      const replies = comment.replies?.length ?? 0;
-      return total + 1 + replies;
-    }, 0) ?? 0;
-
   return (
     <div className="flex items-center justify-between rounded-xl bg-white px-6 py-6 shadow-sm">
       {/* Left section: Upvote + content */}
@@ -29,7 +22,7 @@ const FeedbackCard = ({ item, onUpvote }) => {
       {/* Right section: comment count */}
       <div className="flex items-center gap-2 text-text-strong">
         <MessageCircle className="w-5 h-5 text-light-slate" />
-        <span className="font-bold">{commentCount}</span>
+        <span className="font-bold">{item.commentCount}</span>
       </div>
     </div>
   );
