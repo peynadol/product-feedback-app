@@ -3,28 +3,33 @@ import UpvoteButton from "./upvote-button";
 import Tag from "./tag";
 import { MessageCircle } from "lucide-react";
 
-const FeedbackCard = () => {
+const FeedbackCard = ({ item, onUpvote }) => {
+  // using reduce to count total comments AND replies
+  const commentCount =
+    item.comments?.reduce((total, comment) => {
+      const replies = comment.replies?.length ?? 0;
+      return total + 1 + replies;
+    }, 0) ?? 0;
+
   return (
     <div className="flex items-center justify-between rounded-xl bg-white px-6 py-6 shadow-sm">
       {/* Left section: Upvote + content */}
       <div className="flex gap-6 items-start">
-        <UpvoteButton />
+        <UpvoteButton upvotes={item.upvotes} id={item.id} onUpvote={onUpvote} />
 
         <div className="space-y-2">
-          <h2 className="text-lg font-bold text-text-strong">
-            Add tags for solutions
-          </h2>
+          <h2 className="text-lg font-bold text-text-strong">{item.title}</h2>
           <p className="text-sm text-text-muted">
             Easier to search for solutions based on a specific stack.
           </p>
-          <Tag>Enhancement</Tag>
+          <Tag>{item.category}</Tag>
         </div>
       </div>
 
       {/* Right section: comment count */}
       <div className="flex items-center gap-2 text-text-strong">
         <MessageCircle className="w-5 h-5 text-light-slate" />
-        <span className="font-bold">2</span>
+        <span className="font-bold">{commentCount}</span>
       </div>
     </div>
   );
