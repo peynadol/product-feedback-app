@@ -5,22 +5,26 @@ import Sidebar from "@/components/sidebar";
 import FeedbackList from "@/components/feedback-list";
 import SuggestionsHeader from "@/components/header/suggestions-header";
 import data from "../../data.json";
+import { useFeedbackStore } from "@/store/feedbackStore";
+import { useEffect } from "react";
 
 export default function HomePage() {
+  const setSuggestions = useFeedbackStore((state) => state.setSuggestions);
+
   // add a comment count to each suggestion
-  const enhanceWithCommentCount = (suggestions) =>
-    suggestions.map((item) => {
+  useEffect(() => {
+    const enhanced = data.productRequests.map((item) => {
       const commentCount =
         item.comments?.reduce((total, comment) => {
           const replies = comment.replies?.length ?? 0;
-          return total + 1 + replies;
+          return total + replies + 1;
         }, 0) ?? 0;
       return { ...item, commentCount };
     });
+    setSuggestions(enhanced);
+  }, [setSuggestions]);
+  const suggestions = useFeedbackStore((state) => state.suggestions);
 
-  const [suggestions, setSuggestions] = useState(() => {
-    return enhanceWithCommentCount(data.productRequests);
-  });
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortOptions, setSortOptions] = useState("most-upvotes");
 
@@ -46,20 +50,11 @@ export default function HomePage() {
     }
   });
 
-  const handleUpvote = (id) => {
-    setSuggestions((prevSuggestions) =>
-      prevSuggestions.map((item) =>
-        item.id === id ? { ...item, upvotes: item.upvotes + 1 } : item
-      )
-    );
-  };
-
   return (
     <main className="grid grid-cols-1 gap-6 px-4 py-6 md:grid-cols-[250px_1fr] lg:grid-cols-[280px_1fr] bg-mist min-h-screen">
       {/* Left column */}
       <div className="space-y-6">
         <Sidebar
-          suggestions={suggestions}
           selectedCategory={selectedCategory}
           onSelectCategory={setSelectedCategory}
         />
@@ -73,7 +68,7 @@ export default function HomePage() {
           setSortOptions={setSortOptions}
         />
 
-        <FeedbackList suggestions={sortedSuggestions} onUpvote={handleUpvote} />
+        <FeedbackList suggestions={sortedSuggestions} />
       </div>
     </main>
   );

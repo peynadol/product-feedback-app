@@ -3,6 +3,7 @@ import { create } from "zustand";
 export const useFeedbackStore = create((set) => ({
   suggestions: [],
 
+  // overwrite existing suggestions with new items
   setSuggestions: (items) => set({ suggestions: items }),
 
   upvote: (id) =>

@@ -4,17 +4,13 @@ import Tag from "./tag";
 import { MessageCircle } from "lucide-react";
 import Link from "next/link";
 
-const FeedbackCard = ({ item, onUpvote }) => {
+const FeedbackCard = ({ item }) => {
   return (
     <Link href={`/feedback/${item.id}`} className="block">
       <div className="flex items-center justify-between rounded-xl bg-white px-6 py-6 shadow-sm">
         {/* Left section: Upvote + content */}
         <div className="flex gap-6 items-start">
-          <UpvoteButton
-            upvotes={item.upvotes}
-            id={item.id}
-            onUpvote={onUpvote}
-          />
+          <UpvoteButton id={item.id} />
 
           <div className="space-y-2">
             <h2 className="text-lg font-bold text-text-strong">{item.title}</h2>
