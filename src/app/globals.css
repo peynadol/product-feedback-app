@@ -136,6 +136,26 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* Shimmer Animation 
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient {
+  background-size: 300% 300%;
+  animation: shimmer 6s ease infinite;
+}
+*/
+
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

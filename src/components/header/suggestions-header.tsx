@@ -6,9 +6,9 @@ import { Button } from "../ui/button";
 //TODO: hook up suggestion count to actual data
 //TODO: implement button click handler
 
-const HeaderBar = () => {
+const SuggestionsHeader = () => {
   return (
-    <div className="bg-slate w-full h-[72px] text-white flex items-center justify-between">
+    <div className="bg-slate w-full h-[72px] text-white flex items-center justify-between rounded-xl">
       <div className="flex items-center gap-4 ml-6">
         <SuggestionCount />
         <SortBy />
@@ -20,4 +20,4 @@ const HeaderBar = () => {
   );
 };
 
-export default HeaderBar;
+export default SuggestionsHeader;
