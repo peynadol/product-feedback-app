@@ -2,6 +2,7 @@ import React from "react";
 import SuggestionCount from "./suggestion-count";
 import SortBy from "./sort-by";
 import { Button } from "../ui/button";
+import Link from "next/link";
 //TODO: hook up suggestion count to actual data
 //TODO: implement button click handler
 
@@ -13,7 +14,9 @@ const SuggestionsHeader = ({ total, sortOptions, setSortOptions }) => {
         <SortBy sortOptions={sortOptions} setSortOptions={setSortOptions} />
       </div>
       <div className="mr-6">
-        <Button className="cursor-pointer">+ Add Feedback</Button>
+        <Link href="/create-form">
+          <Button className="cursor-pointer">+ Add Feedback</Button>
+        </Link>
       </div>
     </div>
   );

@@ -24,10 +24,10 @@ const FeedbackPage = () => {
   }
 
   return (
-    <main className="bg-mist min-h-full p-6 ">
+    <main className="bg-mist min-h-dvh p-6 ">
       <div className="flex items-center justify-between mb-6">
         <Link href="/">
-          <Button variant="ghost" className="font-bold">
+          <Button variant="ghost" className="font-bold cursor-pointer">
             <ChevronLeft />
             Go back
           </Button>
