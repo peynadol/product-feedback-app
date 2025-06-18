@@ -46,7 +46,7 @@ const CreateFeedbackForm = () => {
 
   return (
     <>
-      <h1>Create New Feedback</h1>
+      <h1 className="mb-6 text-xl font-bold">Create New Feedback</h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           {/* Title */}
@@ -60,10 +60,7 @@ const CreateFeedbackForm = () => {
                   Add a short, descriptive headline
                 </FormDescription>
                 <FormControl>
-                  <Input
-                    placeholder="Add a short, descriptive headline"
-                    {...field}
-                  />
+                  <Input {...field} className="bg-mist" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -85,7 +82,7 @@ const CreateFeedbackForm = () => {
                   defaultValue={field.value}
                 >
                   <FormControl>
-                    <SelectTrigger className="w-full">
+                    <SelectTrigger className="w-full bg-mist">
                       <SelectValue placeholder="Select a category" />
                     </SelectTrigger>
                   </FormControl>
@@ -114,15 +111,17 @@ const CreateFeedbackForm = () => {
                   added, etc.
                 </FormDescription>
                 <FormControl>
-                  <Textarea className="min-h-[120px]" {...field} />
+                  <Textarea className="min-h-[120px] bg-mist" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          <div>
-            <Button type="button">Cancel</Button>
+          <div className="flex items-center justify-end space-x-2">
+            <Button variant="secondary" type="button">
+              Cancel
+            </Button>
             <Button type="submit">Add Feedback</Button>
           </div>
         </form>
