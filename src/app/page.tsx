@@ -4,25 +4,12 @@ import { useState } from "react";
 import Sidebar from "@/components/sidebar";
 import FeedbackList from "@/components/feedback-list";
 import SuggestionsHeader from "@/components/header/suggestions-header";
-import data from "../../data.json";
 import { useFeedbackStore } from "@/store/feedbackStore";
-import { useEffect } from "react";
+//TODO: stop issue of scrollbar changing layout when it appears/disappears
+//TODO: render empty page design when there are no suggestions
+//TODO: limit upvotes to one per user
 
 export default function HomePage() {
-  const setSuggestions = useFeedbackStore((state) => state.setSuggestions);
-
-  // add a comment count to each suggestion
-  useEffect(() => {
-    const enhanced = data.productRequests.map((item) => {
-      const commentCount =
-        item.comments?.reduce((total, comment) => {
-          const replies = comment.replies?.length ?? 0;
-          return total + replies + 1;
-        }, 0) ?? 0;
-      return { ...item, commentCount };
-    });
-    setSuggestions(enhanced);
-  }, [setSuggestions]);
   const suggestions = useFeedbackStore((state) => state.suggestions);
 
   const [selectedCategory, setSelectedCategory] = useState("All");
