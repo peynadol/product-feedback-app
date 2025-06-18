@@ -23,13 +23,14 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { feedbackSchema } from "@/schemas/feedbackSchema";
-//TODO: add a go back button - sends user back to the home page
+//TODO: make editing title dynamic
+//TODO: include a go back button - sends user back to the feedback card
 
-const createSchema = feedbackSchema.omit({ status: true });
+const editSchema = feedbackSchema;
 
-const CreateFeedbackForm = () => {
-  const form = useForm<z.infer<typeof createSchema>>({
-    resolver: zodResolver(createSchema),
+const EditFeedbackForm = () => {
+  const form = useForm<z.infer<typeof editSchema>>({
+    resolver: zodResolver(editSchema),
     defaultValues: {
       title: "",
       category: "",
@@ -37,14 +38,16 @@ const CreateFeedbackForm = () => {
     },
   });
 
-  const onSubmit = (data: z.infer<typeof createSchema>) => {
+  const onSubmit = (data: z.infer<typeof editSchema>) => {
     console.log("Form submitted:", data);
     // TODO: send to zustand, API, etc.
   };
 
   return (
     <>
-      <h1 className="mb-6 text-xl font-bold">Create New Feedback</h1>
+      <h1 className="mb-6 text-xl font-bold">
+        Editing 'Add a dark theme option'
+      </h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           {/* Title */}
@@ -97,6 +100,35 @@ const CreateFeedbackForm = () => {
             )}
           />
 
+          {/* Update Status */}
+          <FormField
+            control={form.control}
+            name="status"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Status</FormLabel>
+                <FormDescription>Change feature state</FormDescription>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger className="w-full bg-mist">
+                      <SelectValue placeholder="Select a status" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="suggestion">Suggestion</SelectItem>
+                    <SelectItem value="planned">Planned</SelectItem>
+                    <SelectItem value="in-progress">In Progress</SelectItem>
+                    <SelectItem value="live">Live</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           {/* Detail */}
           <FormField
             control={form.control}
@@ -115,12 +147,17 @@ const CreateFeedbackForm = () => {
               </FormItem>
             )}
           />
-
-          <div className="flex items-center justify-end space-x-2">
-            <Button variant="secondary" type="button">
-              Cancel
+          <div className="flex justify-between items-center mt-6">
+            <Button variant="destructive" type="button">
+              Delete
             </Button>
-            <Button type="submit">Add Feedback</Button>
+
+            <div className="flex gap-3">
+              <Button variant="secondary" type="button">
+                Cancel
+              </Button>
+              <Button type="submit">Add Feedback</Button>
+            </div>
           </div>
         </form>
       </Form>
@@ -128,4 +165,4 @@ const CreateFeedbackForm = () => {
   );
 };
 
-export default CreateFeedbackForm;
+export default EditFeedbackForm;
