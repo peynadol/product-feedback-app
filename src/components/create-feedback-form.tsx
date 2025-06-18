@@ -22,16 +22,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { feedbackSchema } from "@/schemas/feedbackSchema";
 
-const formSchema = z.object({
-  title: z.string().min(1, "Title is required"),
-  category: z.string().min(1, "Category is required"),
-  detail: z.string().min(1, "Detail is required"),
-});
+const createSchema = feedbackSchema.omit({ status: true });
 
 const CreateFeedbackForm = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof createSchema>>({
+    resolver: zodResolver(createSchema),
     defaultValues: {
       title: "",
       category: "",
@@ -39,7 +36,7 @@ const CreateFeedbackForm = () => {
     },
   });
 
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
+  const onSubmit = (data: z.infer<typeof createSchema>) => {
     console.log("Form submitted:", data);
     // TODO: send to zustand, API, etc.
   };
