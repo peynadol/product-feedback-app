@@ -14,10 +14,8 @@ const FeedbackCard = ({ item }) => {
 
           <div className="space-y-2">
             <h2 className="text-lg font-bold text-text-strong">{item.title}</h2>
-            <p className="text-sm text-text-muted">
-              Easier to search for solutions based on a specific stack.
-            </p>
-            <Tag>{item.category}</Tag>
+            <p className="text-sm text-text-muted">{item.description}</p>
+            <Tag interactive={false}>{item.category}</Tag>
           </div>
         </div>
 

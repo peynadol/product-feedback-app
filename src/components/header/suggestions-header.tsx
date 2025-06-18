@@ -3,8 +3,6 @@ import SuggestionCount from "./suggestion-count";
 import SortBy from "./sort-by";
 import { Button } from "../ui/button";
 import Link from "next/link";
-//TODO: hook up suggestion count to actual data
-//TODO: implement button click handler
 
 const SuggestionsHeader = ({ total, sortOptions, setSortOptions }) => {
   return (
