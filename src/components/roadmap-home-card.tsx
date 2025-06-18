@@ -1,22 +1,32 @@
 import React from "react";
-
-const roadmap = [
-  { label: "Planned", count: 2, color: "bg-coral" },
-  { label: "In-Progress", count: 3, color: "bg-violet" },
-  { label: "Live", count: 1, color: "bg-sky" },
-];
+import Link from "next/link";
+import { useFeedbackStore } from "@/store/feedbackStore";
 
 const RoadmapHomeCard = () => {
+  const suggestions = useFeedbackStore((state) => state.suggestions);
+
+  const plannedCount = suggestions.filter((s) => s.status === "planned").length;
+  const inProgressCount = suggestions.filter(
+    (s) => s.status === "in-progress"
+  ).length;
+  const liveCount = suggestions.filter((s) => s.status === "live").length;
+
+  const roadmap = [
+    { label: "Planned", count: plannedCount, color: "bg-coral" },
+    { label: "In-Progress", count: inProgressCount, color: "bg-violet" },
+    { label: "Live", count: liveCount, color: "bg-sky" },
+  ];
+
   return (
     <div className="rounded-xl bg-white p-6">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-md font-bold text-text-strong">Roadmap</h2>
-        <a
-          href="#"
+        <Link
+          href="/roadmap"
           className="text-sm font-semibold text-blue underline underline-offset-2 hover:opacity-80"
         >
           View
-        </a>
+        </Link>
       </div>
 
       <ul className="space-y-2">
