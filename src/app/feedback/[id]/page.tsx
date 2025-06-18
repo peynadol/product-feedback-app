@@ -24,8 +24,8 @@ const FeedbackPage = () => {
   }
 
   return (
-    <div>
-      <div className="flex items-center justify-between">
+    <main className="bg-mist min-h-full p-6 ">
+      <div className="flex items-center justify-between mb-6">
         <Link href="/">
           <Button variant="ghost" className="font-bold">
             <ChevronLeft />
@@ -36,7 +36,7 @@ const FeedbackPage = () => {
       </div>
       <FeedbackCard item={item} />
       <CommentsSection item={item} />
-    </div>
+    </main>
   );
 };
 

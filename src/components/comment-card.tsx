@@ -1,5 +1,6 @@
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "./ui/button";
 
 const CommentCard = ({ comment }) => {
   const imagePath = comment.user.image.replace("./", "/");
@@ -16,7 +17,10 @@ const CommentCard = ({ comment }) => {
           <h2 className="font-bold text-sm text-text-strong">
             {comment.user.name}
           </h2>
-          <p className="text-xs text-text-muted">@{comment.user.username}</p>
+          <div className="flex items-center justify-between">
+            <p className="text-xs text-text-muted">@{comment.user.username}</p>
+            <Button variant="ghost">Reply</Button>
+          </div>
         </div>
 
         <p className="mt-2 text-sm text-text-body">
