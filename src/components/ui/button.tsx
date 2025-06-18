@@ -22,6 +22,7 @@ const buttonVariants = cva(
         upvote:
           "bg-mist text-accent-foreground shadow-xs hover:bg-mist-hover active:bg-blue active:text-white flex-col [&>svg]:transition-colors active:[&>svg]:text-white",
         tag: "bg-mist text-blue shadow-xs capitalize transition-colors hover:bg-mist-hover data-[state=active]:bg-blue data-[state=active]:text-white data-[state=active]:hover:bg-blue data-[state=active]:hover:text-white",
+        back: "bg-none text-white hover:underline",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

@@ -26,11 +26,12 @@ const FeedbackPage = () => {
   return (
     <main className="bg-mist min-h-dvh p-6 ">
       <div className="flex items-center justify-between mb-6">
-        <Link href="/">
-          <Button variant="ghost" className="font-bold cursor-pointer">
-            <ChevronLeft />
-            Go back
-          </Button>
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-sm font-bold hover:underline underline-offset-2 "
+        >
+          <ChevronLeft className="w-4 h-4" />
+          Go Back
         </Link>
         <Button>Edit Feedback</Button>
       </div>

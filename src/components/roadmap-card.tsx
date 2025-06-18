@@ -38,7 +38,7 @@ const RoadmapCard = ({ item }) => {
 
         {/* Tag */}
         <div className="mt-4">
-          <Tag>{item.category}</Tag>
+          <Tag interactive={false}>{item.category}</Tag>
         </div>
 
         {/* Footer: Upvotes & Comments */}

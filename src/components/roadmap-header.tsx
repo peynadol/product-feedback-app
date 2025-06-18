@@ -1,19 +1,23 @@
 import React from "react";
 import { Button } from "./ui/button";
+import Link from "next/link";
+import { ChevronLeft } from "lucide-react";
 
 const RoadmapHeader = () => {
   return (
-    <div>
-      {" "}
-      <div className="bg-slate w-full h-[72px] text-white flex items-center justify-between rounded-xl">
-        <div className="flex flex-col items-center ml-4">
-          <Button variant="ghost">Go back</Button>
-          <h1>Roadmap</h1>
-        </div>
-        <div className="mr-6">
-          <Button className="cursor-pointer">+ Add Feedback</Button>
-        </div>
+    <div className="bg-slate w-full text-white rounded-xl px-6 py-4 flex items-center justify-between">
+      <div>
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-sm font-bold hover:underline underline-offset-2 "
+        >
+          <ChevronLeft className="w-4 h-4" />
+          Go Back
+        </Link>
+        <h1 className="text-2xl font-bold mt-2">Roadmap</h1>
       </div>
+
+      <Button className="cursor-pointer">+ Add Feedback</Button>
     </div>
   );
 };
