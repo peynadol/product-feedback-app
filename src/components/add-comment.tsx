@@ -8,7 +8,7 @@ const AddComment = () => {
   return (
     <div className="bg-white rounded-lg p-6 mt-6 shadow-md">
       <h2 className="font-bold text-lg mb-2">Add Comment</h2>
-      <Textarea placeholder="Type your comment here..." />
+      <Textarea placeholder="Type your comment here..." className="bg-mist" />
       <div className="flex items-center justify-between mt-2">
         <p>250 Characters left</p>
         <Button>Post Comment</Button>
