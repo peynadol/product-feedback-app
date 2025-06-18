@@ -7,6 +7,7 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import FeedbackCard from "@/components/feedback-card";
 import { useFeedbackStore } from "@/store/feedbackStore";
+import CommentsSection from "@/components/comments-section";
 
 const FeedbackPage = () => {
   const { id } = useParams();
@@ -34,6 +35,7 @@ const FeedbackPage = () => {
         <Button>Edit Feedback</Button>
       </div>
       <FeedbackCard item={item} />
+      <CommentsSection item={item} />
     </div>
   );
 };
