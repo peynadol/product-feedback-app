@@ -34,7 +34,9 @@ const FeedbackPage = () => {
             <ChevronLeft className="w-4 h-4" />
             Go Back
           </Link>
-          <Button>Edit Feedback</Button>
+          <Link href={`/feedback/${item.id}/edit`}>
+            <Button>Edit Feedback</Button>
+          </Link>
         </div>
         <FeedbackCard item={item} />
         <CommentsSection item={item} />
