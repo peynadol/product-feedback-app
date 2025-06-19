@@ -28,7 +28,7 @@ type CommentProps = {
   };
 };
 
-const CommentCard = ({ comment }: CommentProps) => {
+const CommentCard = ({ comment, depth = 0 }: CommentProps) => {
   const imagePath = comment.user.image.replace("./", "/");
   const [isReplying, setIsReplying] = useState(false);
   const [reply, setReply] = useState("");
@@ -61,14 +61,16 @@ const CommentCard = ({ comment }: CommentProps) => {
             <p className="text-xs text-text-muted">@{comment.user.username}</p>
           </div>
 
-          <Button
-            variant="ghost"
-            size="sm"
-            className="absolute top-0 right-0 text-xs px-2"
-            onClick={() => setIsReplying((prev) => !prev)}
-          >
-            Reply
-          </Button>
+          {depth === 0 && (
+            <Button
+              variant="ghost"
+              size="sm"
+              className="absolute top-0 right-0 text-xs px-2"
+              onClick={() => setIsReplying((prev) => !prev)}
+            >
+              Reply
+            </Button>
+          )}
         </div>
 
         <p className="text-sm text-text-body">
