@@ -16,8 +16,9 @@ const RoadmapHeader = () => {
         </Link>
         <h1 className="text-2xl font-bold mt-2">Roadmap</h1>
       </div>
-
-      <Button className="cursor-pointer">+ Add Feedback</Button>
+      <Link href="/create-form">
+        <Button className="cursor-pointer">+ Add Feedback</Button>
+      </Link>
     </div>
   );
 };

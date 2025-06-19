@@ -123,7 +123,11 @@ const CreateFeedbackForm = () => {
           />
 
           <div className="flex items-center justify-end space-x-2">
-            <Button variant="secondary" type="button">
+            <Button
+              variant="secondary"
+              type="button"
+              onClick={() => router.push("/")}
+            >
               Cancel
             </Button>
             <Button type="submit">Add Feedback</Button>

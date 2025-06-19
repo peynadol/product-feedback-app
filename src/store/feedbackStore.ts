@@ -5,7 +5,12 @@ import { nanoid } from "nanoid";
 export const useFeedbackStore = create<FeedbackStore>((set) => ({
   suggestions: [],
 
-  // Overwrite existing suggestions with new items
+  currentUser: {
+    image: "/assets/user-images/image-zena.jpg",
+    name: "Zena Kelley",
+    username: "velvetround",
+  },
+
   setSuggestions: (items) => set({ suggestions: items }),
 
   upvote: (id) =>
@@ -41,4 +46,27 @@ export const useFeedbackStore = create<FeedbackStore>((set) => ({
         item.id === id ? { ...item, ...updatedItem } : item
       ),
     })),
+
+  addComment: (id: string, content: string) =>
+    set((state) => {
+      const user = state.currentUser;
+      return {
+        suggestions: state.suggestions.map((item) =>
+          item.id === id
+            ? {
+                ...item,
+                comments: [
+                  ...(item.comments || []),
+                  {
+                    id: nanoid(),
+                    content,
+                    user,
+                  },
+                ],
+                commentCount: (item.commentCount ?? 0) + 1,
+              }
+            : item
+        ),
+      };
+    }),
 }));

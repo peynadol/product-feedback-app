@@ -18,6 +18,12 @@ export type FeedbackStore = {
     item: Pick<Suggestion, "title" | "category" | "description">
   ) => void;
   editSuggestion: (id: string, updatedItem: Partial<Suggestion>) => void;
+  addComment: (id: string, content: string) => void;
+  currentUser: {
+    name: string;
+    username: string;
+    image: string;
+  };
 };
 
 export type Comment = {
