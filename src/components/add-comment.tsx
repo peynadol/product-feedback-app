@@ -9,7 +9,7 @@ const AddComment = () => {
   const maxLength = 250;
   const charactersLeft = maxLength - comment.length;
   const addComment = useFeedbackStore((state) => state.addComment);
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newValue = e.target.value;

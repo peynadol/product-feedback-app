@@ -4,6 +4,8 @@ import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
 import { useParams } from "next/navigation";
 import { useFeedbackStore } from "@/store/feedbackStore";
+// TODO: Implement nested replies - requires recursive state management
+// For now, limiting to one level for simplicity
 
 type CommentProps = {
   comment: {
@@ -26,6 +28,7 @@ type CommentProps = {
       };
     }[];
   };
+  depth?: number;
 };
 
 const CommentCard = ({ comment, depth = 0 }: CommentProps) => {
@@ -34,7 +37,7 @@ const CommentCard = ({ comment, depth = 0 }: CommentProps) => {
   const [reply, setReply] = useState("");
   console.log("CommentCard rendering, replies:", comment.replies?.length);
 
-  const { id: suggestionId } = useParams();
+  const { id: suggestionId } = useParams<{ id: string }>();
   const addReply = useFeedbackStore((state) => state.addReply);
 
   const handlePostReply = () => {

@@ -86,7 +86,7 @@ export const useFeedbackStore = create<FeedbackStore>((set) => ({
                         {
                           id: nanoid(),
                           content: replyText,
-                          replyingTo,
+                          replyingTo: replyingTo ?? "",
                           user: state.currentUser,
                         },
                       ],

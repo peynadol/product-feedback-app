@@ -24,6 +24,12 @@ export type FeedbackStore = {
     username: string;
     image: string;
   };
+  addReply: (
+    suggestionId: string,
+    commentId: string,
+    content: string,
+    replyingToUsername?: string
+  ) => void;
 };
 
 export type Comment = {
@@ -39,6 +45,7 @@ export type Comment = {
 };
 
 export type Reply = {
+  id: string;
   content: string;
   replyingTo: string;
   user: {
