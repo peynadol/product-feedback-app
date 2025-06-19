@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { FeedbackStore, Suggestion } from "@/types/feedback";
 import { nanoid } from "nanoid";
+// TODO: USER ADDED REPLY IS RENDERING TWICE, FIX THIS
 
 export const useFeedbackStore = create<FeedbackStore>((set) => ({
   suggestions: [],
@@ -69,4 +70,31 @@ export const useFeedbackStore = create<FeedbackStore>((set) => ({
         ),
       };
     }),
+
+  addReply: (suggestionId, commentId, replyText, replyingTo) =>
+    set((state) => ({
+      suggestions: state.suggestions.map((suggestion) =>
+        suggestion.id === suggestionId
+          ? {
+              ...suggestion,
+              comments: suggestion.comments.map((comment) =>
+                comment.id === commentId
+                  ? {
+                      ...comment,
+                      replies: [
+                        ...(comment.replies || []),
+                        {
+                          id: nanoid(),
+                          content: replyText,
+                          replyingTo,
+                          user: state.currentUser,
+                        },
+                      ],
+                    }
+                  : comment
+              ),
+            }
+          : suggestion
+      ),
+    })),
 }));

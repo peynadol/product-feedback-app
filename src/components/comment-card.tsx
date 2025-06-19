@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "./ui/button";
+import { Textarea } from "./ui/textarea";
+import { useParams } from "next/navigation";
+import { useFeedbackStore } from "@/store/feedbackStore";
 
 type CommentProps = {
   comment: {
+    id: string;
     content: string;
     replyingTo?: string;
     user: {
@@ -11,11 +15,35 @@ type CommentProps = {
       username: string;
       image: string;
     };
+    replies?: {
+      id: string;
+      content: string;
+      replyingTo: string;
+      user: {
+        name: string;
+        username: string;
+        image: string;
+      };
+    }[];
   };
 };
 
 const CommentCard = ({ comment }: CommentProps) => {
   const imagePath = comment.user.image.replace("./", "/");
+  const [isReplying, setIsReplying] = useState(false);
+  const [reply, setReply] = useState("");
+  console.log("CommentCard rendering, replies:", comment.replies?.length);
+
+  const { id: suggestionId } = useParams();
+  const addReply = useFeedbackStore((state) => state.addReply);
+
+  const handlePostReply = () => {
+    if (!reply.trim()) return;
+    console.log("Posting reply:", reply);
+    addReply(suggestionId, comment.id, reply, comment.user.username);
+    setReply("");
+    setIsReplying(false);
+  };
 
   return (
     <div className="flex gap-4">
@@ -30,14 +58,14 @@ const CommentCard = ({ comment }: CommentProps) => {
             <h2 className="font-bold text-sm text-text-strong leading-tight">
               {comment.user.name}
             </h2>
-            <p className="text-xs text-text-muted text-gray-600">
-              @{comment.user.username}
-            </p>
+            <p className="text-xs text-text-muted">@{comment.user.username}</p>
           </div>
 
           <Button
             variant="ghost"
+            size="sm"
             className="absolute top-0 right-0 text-xs px-2"
+            onClick={() => setIsReplying((prev) => !prev)}
           >
             Reply
           </Button>
@@ -51,6 +79,20 @@ const CommentCard = ({ comment }: CommentProps) => {
           )}
           {comment.content}
         </p>
+
+        {isReplying && (
+          <div className="mt-3 space-y-2">
+            <Textarea
+              value={reply}
+              onChange={(e) => setReply(e.target.value)}
+              placeholder={`Reply to @${comment.user.username}...`}
+              className="bg-mist"
+            />
+            <Button size="sm" onClick={handlePostReply}>
+              Post Reply
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
