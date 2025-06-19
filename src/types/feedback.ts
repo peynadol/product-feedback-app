@@ -17,6 +17,7 @@ export type FeedbackStore = {
   addSuggestion: (
     item: Pick<Suggestion, "title" | "category" | "description">
   ) => void;
+  editSuggestion: (id: string, updatedItem: Partial<Suggestion>) => void;
 };
 
 export type Comment = {

@@ -1,11 +1,11 @@
 import { create } from "zustand";
-import { FeedbackStore } from "@/types/feedback";
+import { FeedbackStore, Suggestion } from "@/types/feedback";
 import { nanoid } from "nanoid";
 
 export const useFeedbackStore = create<FeedbackStore>((set) => ({
   suggestions: [],
 
-  // overwrite existing suggestions with new items
+  // Overwrite existing suggestions with new items
   setSuggestions: (items) => set({ suggestions: items }),
 
   upvote: (id) =>
@@ -33,5 +33,12 @@ export const useFeedbackStore = create<FeedbackStore>((set) => ({
           comments: [],
         },
       ],
+    })),
+
+  editSuggestion: (id: string, updatedItem: Partial<Suggestion>) =>
+    set((state) => ({
+      suggestions: state.suggestions.map((item) =>
+        item.id === id ? { ...item, ...updatedItem } : item
+      ),
     })),
 }));

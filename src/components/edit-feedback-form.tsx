@@ -23,30 +23,68 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { feedbackSchema } from "@/schemas/feedbackSchema";
-//TODO: make editing title dynamic
+import { useParams } from "next/navigation";
+import { useFeedbackStore } from "@/store/feedbackStore";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { ChevronLeft } from "lucide-react";
 //TODO: include a go back button - sends user back to the feedback card
 
 const editSchema = feedbackSchema;
 
 const EditFeedbackForm = () => {
+  const editSuggestion = useFeedbackStore((state) => state.editSuggestion);
+  const router = useRouter();
+  const { id } = useParams();
+  const suggestion = useFeedbackStore((state) =>
+    state.suggestions.find((item) => item.id === id)
+  );
+
   const form = useForm<z.infer<typeof editSchema>>({
     resolver: zodResolver(editSchema),
     defaultValues: {
-      title: "",
-      category: "",
-      detail: "",
+      title: suggestion?.title || "",
+      category: suggestion?.category || "",
+      description: suggestion?.description || "",
+      status: suggestion?.status || "",
     },
   });
 
+  // fixes potential timing issues with initial values
+  useEffect(() => {
+    if (suggestion) {
+      form.reset({
+        title: suggestion.title,
+        category: suggestion.category,
+        description: suggestion.description,
+        status: suggestion.status,
+      });
+    }
+  }, [suggestion, form]);
+
   const onSubmit = (data: z.infer<typeof editSchema>) => {
     console.log("Form submitted:", data);
-    // TODO: send to zustand, API, etc.
+    if (!suggestion) return;
+    editSuggestion(suggestion.id, {
+      title: data.title,
+      category: data.category,
+      description: data.description,
+      status: data.status,
+    });
+    router.push(`/feedback/${suggestion.id}`);
+  };
+
+  const onCancel = () => {
+    if (!suggestion) return;
+    router.push(`/feedback/${suggestion.id}`);
   };
 
   return (
     <>
+  
       <h1 className="mb-6 text-xl font-bold">
-        Editing 'Add a dark theme option'
+        Editing '{suggestion?.title || "Failed to load title"}'
       </h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -129,13 +167,13 @@ const EditFeedbackForm = () => {
             )}
           />
 
-          {/* Detail */}
+          {/* Description */}
           <FormField
             control={form.control}
-            name="detail"
+            name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Feedback Detail</FormLabel>
+                <FormLabel>Feedback Description</FormLabel>
                 <FormDescription>
                   Include any specific comments on what should be improved,
                   added, etc.
@@ -153,7 +191,7 @@ const EditFeedbackForm = () => {
             </Button>
 
             <div className="flex gap-3">
-              <Button variant="secondary" type="button">
+              <Button variant="secondary" type="button" onClick={onCancel}>
                 Cancel
               </Button>
               <Button type="submit">Add Feedback</Button>
