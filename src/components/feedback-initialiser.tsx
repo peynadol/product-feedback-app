@@ -13,7 +13,7 @@ export default function FeedbackInitialiser() {
           const replies = comment.replies?.length ?? 0;
           return total + replies + 1;
         }, 0) ?? 0;
-      return { ...item, commentCount };
+      return { ...item, commentCount, upvoted: false };
     });
     setSuggestions(enhanced);
   }, [setSuggestions]);

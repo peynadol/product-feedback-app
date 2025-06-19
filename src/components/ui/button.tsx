@@ -20,7 +20,8 @@ const buttonVariants = cva(
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
         upvote:
-          "bg-mist text-accent-foreground shadow-xs hover:bg-mist-hover active:bg-blue active:text-white flex-col [&>svg]:transition-colors active:[&>svg]:text-white",
+          "bg-mist text-accent-foreground shadow-xs hover:bg-mist-hover flex-col [&>svg]:transition-colors data-[state=active]:bg-blue data-[state=active]:text-white data-[state=active]:[&>svg]:text-white",
+
         tag: "bg-mist text-blue shadow-xs capitalize transition-colors hover:bg-mist-hover data-[state=active]:bg-blue data-[state=active]:text-white data-[state=active]:hover:bg-blue data-[state=active]:hover:text-white",
         back: "bg-none text-white hover:underline",
       },

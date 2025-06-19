@@ -11,12 +11,15 @@ const UpvoteButton = ({ id }) => {
   // extracted in order to prevent button click activating the link
   const handleUpvote = (e) => {
     e.preventDefault();
+    const isUpvoted = suggestions.find((item) => item.id === id)?.upvoted;
+    if (isUpvoted) return;
     onUpvote(id);
   };
 
   return (
     <Button
       variant="upvote"
+      data-state={item?.upvoted ? "active" : undefined}
       className="items-center gap-0 py-7 w-[50px] cursor-pointer"
       onClick={handleUpvote}
     >
