@@ -1,7 +1,14 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 
-const Tag = ({ children, isActive, onClick, interactive = true }) => {
+type TagProps = {
+  children: React.ReactNode;
+  isActive?: boolean;
+  onClick?: () => void;
+  interactive?: boolean;
+};
+
+const Tag = ({ children, isActive, onClick, interactive = true }: TagProps) => {
   return (
     <Button
       variant="tag"

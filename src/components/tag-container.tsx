@@ -3,7 +3,15 @@ import Tag from "./tag";
 
 const categories = ["All", "UI", "UX", "Enhancement", "Bug", "Feature"];
 
-const TagContainer = ({ suggestions, selectedCategory, onSelectCategory }) => {
+type TagContainerProps = {
+  selectedCategory: string;
+  onSelectCategory: (category: string) => void;
+};
+
+const TagContainer = ({
+  selectedCategory,
+  onSelectCategory,
+}: TagContainerProps) => {
   return (
     <div className="rounded-xl bg-white p-6">
       <div className="flex flex-wrap gap-3">

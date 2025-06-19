@@ -4,12 +4,16 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
 
-const SortBy = ({ sortOptions, setSortOptions }) => {
+type SortByProps = {
+  sortOptions: string;
+  setSortOptions: (value: string) => void;
+};
+
+const SortBy = ({ sortOptions, setSortOptions }: SortByProps) => {
   return (
     <div className="flex items-center ">
       <div>

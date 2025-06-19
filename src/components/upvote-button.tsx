@@ -3,13 +3,13 @@ import { ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useFeedbackStore } from "@/store/feedbackStore";
 
-const UpvoteButton = ({ id }) => {
+const UpvoteButton = ({ id }: { id: number }) => {
   const suggestions = useFeedbackStore((state) => state.suggestions);
   const onUpvote = useFeedbackStore((state) => state.upvote);
   const item = suggestions.find((item) => item.id === id);
 
   // extracted in order to prevent button click activating the link
-  const handleUpvote = (e) => {
+  const handleUpvote = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const isUpvoted = suggestions.find((item) => item.id === id)?.upvoted;
     if (isUpvoted) return;

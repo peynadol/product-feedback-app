@@ -4,7 +4,17 @@ import SortBy from "./sort-by";
 import { Button } from "../ui/button";
 import Link from "next/link";
 
-const SuggestionsHeader = ({ total, sortOptions, setSortOptions }) => {
+type SuggestionsHeaderProps = {
+  total: number;
+  sortOptions: string;
+  setSortOptions: (value: string) => void;
+};
+
+const SuggestionsHeader = ({
+  total,
+  sortOptions,
+  setSortOptions,
+}: SuggestionsHeaderProps) => {
   return (
     <div className="bg-slate w-full h-[72px] text-white flex items-center justify-between rounded-xl">
       <div className="flex items-center gap-6 ml-6">

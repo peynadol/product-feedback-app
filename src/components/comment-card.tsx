@@ -2,7 +2,19 @@ import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "./ui/button";
 
-const CommentCard = ({ comment }) => {
+type CommentProps = {
+  comment: {
+    content: string;
+    replyingTo?: string;
+    user: {
+      name: string;
+      username: string;
+      image: string;
+    };
+  };
+};
+
+const CommentCard = ({ comment }: CommentProps) => {
   const imagePath = comment.user.image.replace("./", "/");
 
   return (

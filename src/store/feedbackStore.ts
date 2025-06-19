@@ -1,6 +1,7 @@
 import { create } from "zustand";
+import { FeedbackStore } from "@/types/feedback";
 
-export const useFeedbackStore = create((set) => ({
+export const useFeedbackStore = create<FeedbackStore>((set) => ({
   suggestions: [],
 
   // overwrite existing suggestions with new items

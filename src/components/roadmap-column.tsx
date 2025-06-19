@@ -1,7 +1,15 @@
 import React from "react";
 import RoadmapCard from "./roadmap-card";
+import { Suggestion } from "@/types/feedback";
 
-const RoadmapColumn = ({ status, desc, count, colour, items }) => {
+type RoadmapColumnProps = {
+  status: string;
+  desc: string;
+  count: number;
+  items: Suggestion[];
+};
+
+const RoadmapColumn = ({ status, desc, count, items }: RoadmapColumnProps) => {
   return (
     <div>
       <div className="mt-6">

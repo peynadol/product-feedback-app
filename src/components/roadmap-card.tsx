@@ -3,15 +3,23 @@ import UpvoteButton from "./upvote-button";
 import Tag from "./tag";
 import { MessageCircle } from "lucide-react";
 import Link from "next/link";
+import { Suggestion } from "@/types/feedback";
 
-const RoadmapCard = ({ item }) => {
+type RoadmapCardProps = {
+  item: Suggestion;
+};
+
+const RoadmapCard = ({ item }: RoadmapCardProps) => {
   console.log(item);
   const statusToColor = {
     planned: "var(--color-coral)",
     "in-progress": "var(--color-violet)",
     live: "var(--color-sky)",
   };
-  const colour = statusToColor[item.status] || "var(--color-slate)";
+
+  const colour: string =
+    statusToColor[item.status as keyof typeof statusToColor] ||
+    "var(--color-slate)";
 
   return (
     <Link href={`/feedback/${item.id}`} className="block">

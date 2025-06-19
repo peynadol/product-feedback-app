@@ -19,21 +19,18 @@ const RoadmapPage = () => {
       <div className=" grid grid-cols-3 gap-6 md:grid-cols-3">
         <RoadmapColumn
           desc="Ideas prioritised for research"
-          colour="orange"
           status="planned"
           count={planned.length}
           items={planned}
         />
         <RoadmapColumn
           desc="Currently being developed"
-          colour="purple"
           status="in-progress"
           count={inProgress.length}
           items={inProgress}
         />
         <RoadmapColumn
           desc="Released features"
-          colour="blue"
           status="live"
           count={live.length}
           items={live}
