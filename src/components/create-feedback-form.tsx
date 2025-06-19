@@ -23,23 +23,29 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { feedbackSchema } from "@/schemas/feedbackSchema";
+import { useFeedbackStore } from "@/store/feedbackStore";
+import { useRouter } from "next/navigation";
 //TODO: add a go back button - sends user back to the home page
 
 const createSchema = feedbackSchema.omit({ status: true });
 
 const CreateFeedbackForm = () => {
+  const router = useRouter();
+
+  const addSuggestion = useFeedbackStore((state) => state.addSuggestion);
   const form = useForm<z.infer<typeof createSchema>>({
     resolver: zodResolver(createSchema),
     defaultValues: {
       title: "",
       category: "",
-      detail: "",
+      description: "",
     },
   });
 
   const onSubmit = (data: z.infer<typeof createSchema>) => {
-    console.log("Form submitted:", data);
-    // TODO: send to zustand, API, etc.
+    addSuggestion(data);
+    form.reset();
+    router.push("/");
   };
 
   return (
@@ -97,13 +103,13 @@ const CreateFeedbackForm = () => {
             )}
           />
 
-          {/* Detail */}
+          {/* Description */}
           <FormField
             control={form.control}
-            name="detail"
+            name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Feedback Detail</FormLabel>
+                <FormLabel>Feedback Description</FormLabel>
                 <FormDescription>
                   Include any specific comments on what should be improved,
                   added, etc.

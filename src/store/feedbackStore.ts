@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { FeedbackStore } from "@/types/feedback";
+import { nanoid } from "nanoid";
 
 export const useFeedbackStore = create<FeedbackStore>((set) => ({
   suggestions: [],
@@ -14,5 +15,23 @@ export const useFeedbackStore = create<FeedbackStore>((set) => ({
           ? { ...item, upvotes: item.upvotes + 1, upvoted: true }
           : item
       ),
+    })),
+
+  addSuggestion: (item) =>
+    set((state) => ({
+      suggestions: [
+        ...state.suggestions,
+        {
+          id: nanoid(),
+          title: item.title,
+          category: item.category,
+          description: item.description,
+          status: "suggestion",
+          upvotes: 0,
+          upvoted: false,
+          commentCount: 0,
+          comments: [],
+        },
+      ],
     })),
 }));

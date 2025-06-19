@@ -3,7 +3,7 @@ import { ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useFeedbackStore } from "@/store/feedbackStore";
 
-const UpvoteButton = ({ id }: { id: number }) => {
+const UpvoteButton = ({ id }: { id: string }) => {
   const suggestions = useFeedbackStore((state) => state.suggestions);
   const onUpvote = useFeedbackStore((state) => state.upvote);
   const item = suggestions.find((item) => item.id === id);

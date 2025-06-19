@@ -13,7 +13,7 @@ const FeedbackPage = () => {
   const { id } = useParams();
   const suggestions = useFeedbackStore((state) => state.suggestions);
 
-  const item = suggestions.find((s) => s.id === Number(id));
+  const item = suggestions.find((s) => s.id === id);
 
   if (suggestions.length === 0) {
     return <div>Loading...</div>;

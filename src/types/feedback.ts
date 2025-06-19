@@ -1,5 +1,5 @@
 export type Suggestion = {
-  id: number;
+  id: string;
   title: string;
   category: string;
   status: string;
@@ -13,11 +13,14 @@ export type Suggestion = {
 export type FeedbackStore = {
   suggestions: Suggestion[];
   setSuggestions: (items: Suggestion[]) => void;
-  upvote: (id: number) => void;
+  upvote: (id: string) => void;
+  addSuggestion: (
+    item: Pick<Suggestion, "title" | "category" | "description">
+  ) => void;
 };
 
 export type Comment = {
-  id: number;
+  id: string;
   content: string;
   replyingTo?: string;
   user: {
