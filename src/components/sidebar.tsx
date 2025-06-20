@@ -1,8 +1,8 @@
 import LogoCard from "./logo-card";
 import RoadmapHomeCard from "./roadmap-home-card";
 import TagContainer from "./tag-container";
-import { useFeedbackStore } from "@/store/feedbackStore";
-import { Suggestion } from "@/types/feedback";
+import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
 
 type SidebarProps = {
   selectedCategory: string;
@@ -14,17 +14,46 @@ export default function Sidebar({
   onSelectCategory,
 }: SidebarProps) {
   return (
-    <div className="hidden md:flex md:gap-4 md:w-full md:h-[178px]">
-      <div className="md:flex-1 md:basis-0 md:h-full">
+    <div className="w-screen -mx-4 md:flex md:gap-4 md:w-full md:h-[178px]">
+      <div className="md:flex-1 md:basis-0 md:h-full relative">
         <LogoCard />
+
+        <div className="absolute top-4 right-4 md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <button>
+                <Menu className="w-6 h-6 text-white" />
+              </button>
+            </SheetTrigger>
+
+            <SheetContent
+              side="right"
+              className="w-[280px] min-h-dvh overflow-y-auto p-0"
+            >
+              <div className="bg-mist p-4 min-h-screen space-y-4">
+                <div className="bg-white rounded-lg p-2 shadow-sm">
+                  <TagContainer
+                    selectedCategory={selectedCategory}
+                    onSelectCategory={onSelectCategory}
+                  />
+                </div>
+
+                <div className="bg-white rounded-lg p-2 shadow-sm">
+                  <RoadmapHomeCard />
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
-      <div className="md:flex-1 md:basis-0 md:h-full">
+
+      <div className="hidden md:flex-1 md:basis-0 md:h-full md:block">
         <TagContainer
           selectedCategory={selectedCategory}
           onSelectCategory={onSelectCategory}
         />
       </div>
-      <div className="md:flex-1 md:basis-0 md:h-full">
+      <div className="hidden md:flex-1 md:basis-0 md:h-full md:block">
         <RoadmapHomeCard />
       </div>
     </div>

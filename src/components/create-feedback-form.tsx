@@ -122,7 +122,7 @@ const CreateFeedbackForm = () => {
             )}
           />
 
-          <div className="flex items-center justify-end space-x-2">
+          <div className="flex flex-col-reverse gap-4 md:flex-row md:items-center md:justify-end ">
             <Button
               variant="secondary"
               type="button"

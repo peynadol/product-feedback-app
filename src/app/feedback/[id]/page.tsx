@@ -24,7 +24,7 @@ const FeedbackPage = () => {
   }
 
   return (
-    <main className="bg-mist min-h-dvh p-6 ">
+    <main className="bg-mist min-h-dvh md:p-6 ">
       <div className="max-w-2xl mx-auto rounded p-6 ">
         <div className="flex items-center justify-between mb-6">
           <Link

@@ -18,7 +18,7 @@ const RoadmapHomeCard = () => {
   ];
 
   return (
-    <div className="rounded-xl bg-white p-6 h-full">
+    <div className="rounded-xl bg-white p-6 ">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-md font-bold text-text-strong">Roadmap</h2>
         <Link

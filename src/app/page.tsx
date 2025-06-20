@@ -37,7 +37,10 @@ export default function HomePage() {
   });
 
   return (
-    <main className="flex flex-col gap-6 px-4 py-6 bg-mist min-h-screen lg:grid lg:grid-cols-[280px_1fr]">
+    <main
+      className="flex flex-col md:gap-6 px-4 py-0 md:py-6
+  bg-mist min-h-screen lg:grid lg:grid-cols-[280px_1fr]"
+    >
       {/* Sidebar container */}
       <div className="order-1 md:order-none space-y-6 md:space-y-0 md:flex md:flex-col md:mx-4">
         <Sidebar

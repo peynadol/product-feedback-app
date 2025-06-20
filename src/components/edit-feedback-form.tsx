@@ -27,8 +27,6 @@ import { useParams } from "next/navigation";
 import { useFeedbackStore } from "@/store/feedbackStore";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -104,7 +102,6 @@ const EditFeedbackForm = () => {
       </h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          {/* Title */}
           <FormField
             control={form.control}
             name="title"
@@ -122,7 +119,6 @@ const EditFeedbackForm = () => {
             )}
           />
 
-          {/* Category */}
           <FormField
             control={form.control}
             name="category"
@@ -154,7 +150,6 @@ const EditFeedbackForm = () => {
             )}
           />
 
-          {/* Update Status */}
           <FormField
             control={form.control}
             name="status"
@@ -183,7 +178,6 @@ const EditFeedbackForm = () => {
             )}
           />
 
-          {/* Description */}
           <FormField
             control={form.control}
             name="description"
@@ -201,7 +195,14 @@ const EditFeedbackForm = () => {
               </FormItem>
             )}
           />
-          <div className="flex justify-between items-center mt-6">
+          <div className="flex flex-col-reverse gap-4 mt-6 md:flex-row md:justify-between md:items-center">
+            <div className="flex flex-col gap-4 md:flex-row md:gap-3 md:order-2">
+              <Button variant="secondary" type="button" onClick={onCancel}>
+                Cancel
+              </Button>
+              <Button type="submit">Save Changes</Button>
+            </div>
+
             <Dialog>
               <DialogTrigger asChild>
                 <Button variant="destructive" type="button">
@@ -232,13 +233,6 @@ const EditFeedbackForm = () => {
                 </div>
               </DialogContent>
             </Dialog>
-
-            <div className="flex gap-3">
-              <Button variant="secondary" type="button" onClick={onCancel}>
-                Cancel
-              </Button>
-              <Button type="submit">Add Feedback</Button>
-            </div>
           </div>
         </form>
       </Form>
