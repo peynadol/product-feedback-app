@@ -16,7 +16,7 @@ const RoadmapPage = () => {
       <div>
         <RoadmapHeader />
       </div>
-      <div className=" grid grid-cols-3 gap-6 md:grid-cols-3">
+      <div className=" grid grid-cols-3 gap-6 ">
         <RoadmapColumn
           desc="Ideas prioritised for research"
           status="planned"

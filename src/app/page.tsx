@@ -39,7 +39,7 @@ export default function HomePage() {
   return (
     <main className="flex flex-col gap-6 px-4 py-6 bg-mist min-h-screen lg:grid lg:grid-cols-[280px_1fr]">
       {/* Sidebar container */}
-      <div className="order-1 md:order-none space-y-6 md:space-y-0 md:flex md:flex-col">
+      <div className="order-1 md:order-none space-y-6 md:space-y-0 md:flex md:flex-col md:mx-4">
         <Sidebar
           selectedCategory={selectedCategory}
           onSelectCategory={setSelectedCategory}
@@ -47,7 +47,7 @@ export default function HomePage() {
       </div>
 
       {/* Header + list container */}
-      <div className="order-2 md:order-none space-y-6">
+      <div className="order-2 md:order-none space-y-6 md:mx-4">
         <SuggestionsHeader
           total={filteredSuggestions.length}
           sortOptions={sortOptions}

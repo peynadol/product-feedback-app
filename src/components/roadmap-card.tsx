@@ -24,7 +24,7 @@ const RoadmapCard = ({ item }: RoadmapCardProps) => {
   return (
     <Link href={`/feedback/${item.id}`} className="block">
       <div
-        className="rounded bg-white px-6 py-6 shadow-sm border-t-[6px] border-[colour] h-[272px] w-[350px]"
+        className="rounded bg-white px-6 py-6 shadow-sm border-t-[6px] border-[colour] w-full"
         style={{ borderTopColor: colour }}
       >
         {/* Status with Dot */}
@@ -42,7 +42,9 @@ const RoadmapCard = ({ item }: RoadmapCardProps) => {
         <h2 className="mt-2 text-lg font-bold text-text-strong">
           {item.title}
         </h2>
-        <p className="text-sm text-text-muted">{item.description}</p>
+        <p className="text-sm text-text-muted line-clamp-3">
+          {item.description}
+        </p>
 
         {/* Tag */}
         <div className="mt-4">

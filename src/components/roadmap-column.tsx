@@ -1,6 +1,7 @@
 import React from "react";
 import RoadmapCard from "./roadmap-card";
 import { Suggestion } from "@/types/feedback";
+//TODO: figure out a way to make all cards equal height, regardless of content length
 
 type RoadmapColumnProps = {
   status: string;
@@ -12,7 +13,7 @@ type RoadmapColumnProps = {
 const RoadmapColumn = ({ status, desc, count, items }: RoadmapColumnProps) => {
   return (
     <div>
-      <div className="mt-6">
+      <div className="my-6">
         <h2 className="text-lg font-bold">
           {status.charAt(0).toUpperCase() + status.slice(1)} ({count})
         </h2>
