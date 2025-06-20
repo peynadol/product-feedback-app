@@ -25,7 +25,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { feedbackSchema } from "@/schemas/feedbackSchema";
 import { useFeedbackStore } from "@/store/feedbackStore";
 import { useRouter } from "next/navigation";
-//TODO: add a go back button - sends user back to the home page
 
 const createSchema = feedbackSchema.omit({ status: true });
 

@@ -1,6 +1,5 @@
-import React from "react";
-import Link from "next/link";
 import { useFeedbackStore } from "@/store/feedbackStore";
+import Link from "next/link";
 
 const RoadmapHomeCard = () => {
   const suggestions = useFeedbackStore((state) => state.suggestions);

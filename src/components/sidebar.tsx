@@ -19,7 +19,7 @@ export default function Sidebar({
   onSelectCategory,
 }: SidebarProps) {
   return (
-    <div className="w-screen mx-[-1rem] md:mx-0 md:px-0 md:flex md:gap-4 md:w-full md:h-[178px]">
+    <div className="mx-[-1rem] md:mx-0 md:flex md:gap-4 md:w-full md:h-[178px] lg:mx-0 lg:flex-col lg:h-auto lg:space-y-6">
       <div className="md:flex-1 md:basis-0 md:h-full relative">
         <LogoCard />
 

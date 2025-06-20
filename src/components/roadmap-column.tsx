@@ -1,7 +1,6 @@
 import React from "react";
 import RoadmapCard from "./roadmap-card";
 import { Suggestion } from "@/types/feedback";
-//TODO: figure out a way to make all cards equal height, regardless of content length
 
 type RoadmapColumnProps = {
   status: string;
