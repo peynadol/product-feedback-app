@@ -29,12 +29,22 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { DialogClose } from "@radix-ui/react-dialog";
 //TODO: include a go back button - sends user back to the feedback card
 
 const editSchema = feedbackSchema;
 
 const EditFeedbackForm = () => {
   const editSuggestion = useFeedbackStore((state) => state.editSuggestion);
+  const deleteFeedback = useFeedbackStore((state) => state.deleteFeedback);
   const router = useRouter();
   const { id } = useParams();
   const suggestion = useFeedbackStore((state) =>
@@ -80,9 +90,14 @@ const EditFeedbackForm = () => {
     router.push(`/feedback/${suggestion.id}`);
   };
 
+  const onDelete = () => {
+    if (!suggestion) return;
+    deleteFeedback(suggestion.id);
+    router.push("/");
+  };
+
   return (
     <>
-  
       <h1 className="mb-6 text-xl font-bold">
         Editing '{suggestion?.title || "Failed to load title"}'
       </h1>
@@ -186,9 +201,36 @@ const EditFeedbackForm = () => {
             )}
           />
           <div className="flex justify-between items-center mt-6">
-            <Button variant="destructive" type="button">
-              Delete
-            </Button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="destructive" type="button">
+                  Delete
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>Delete Feedback</DialogTitle>
+                  <DialogDescription>
+                    Are you sure you want to delete this feedback? This action
+                    cannot be undone.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="flex justify-end mt-4 gap-4">
+                  <DialogClose asChild>
+                    <Button variant="secondary" type="button">
+                      Cancel
+                    </Button>
+                  </DialogClose>
+                  <Button
+                    variant="destructive"
+                    type="button"
+                    onClick={onDelete}
+                  >
+                    Delete
+                  </Button>
+                </div>
+              </DialogContent>
+            </Dialog>
 
             <div className="flex gap-3">
               <Button variant="secondary" type="button" onClick={onCancel}>

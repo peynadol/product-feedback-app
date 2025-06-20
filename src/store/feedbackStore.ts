@@ -97,4 +97,9 @@ export const useFeedbackStore = create<FeedbackStore>((set) => ({
           : suggestion
       ),
     })),
+
+  deleteFeedback: (id) =>
+    set((state) => ({
+      suggestions: state.suggestions.filter((item) => item.id !== id),
+    })),
 }));
