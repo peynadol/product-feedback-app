@@ -29,7 +29,7 @@ const RoadmapPage = () => {
   };
 
   return (
-    <div className="bg-mist px-4 pt-0 pb-6 md:px-8 lg:px-24">
+    <div className="bg-mist px-4 pt-0 pb-6 md:px-8 md:pt-6 lg:px-24">
       <RoadmapHeader />
 
       {/* mobile tabbed nav */}
@@ -37,7 +37,9 @@ const RoadmapPage = () => {
         {["planned", "in-progress", "live"].map((status) => (
           <button
             key={status}
-            onClick={() => setActiveTab(status as any)}
+            onClick={() =>
+              setActiveTab(status as "planned" | "in-progress" | "live")
+            }
             className={`flex-1 py-4 text-center font-semibold capitalize transition-colors ${
               activeTab === status
                 ? "text-primary border-b-4 border-primary"

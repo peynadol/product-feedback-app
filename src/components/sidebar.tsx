@@ -1,7 +1,12 @@
 import LogoCard from "./logo-card";
 import RoadmapHomeCard from "./roadmap-home-card";
 import TagContainer from "./tag-container";
-import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 
 type SidebarProps = {
@@ -14,11 +19,11 @@ export default function Sidebar({
   onSelectCategory,
 }: SidebarProps) {
   return (
-    <div className="w-screen -mx-4 md:flex md:gap-4 md:w-full md:h-[178px]">
+    <div className="w-screen mx-[-1rem] md:mx-0 md:px-0 md:flex md:gap-4 md:w-full md:h-[178px]">
       <div className="md:flex-1 md:basis-0 md:h-full relative">
         <LogoCard />
 
-        <div className="absolute top-4 right-4 md:hidden">
+        <div className="absolute inset-y-0 right-4 flex items-center md:hidden">
           <Sheet>
             <SheetTrigger asChild>
               <button>
@@ -30,6 +35,7 @@ export default function Sidebar({
               side="right"
               className="w-[280px] min-h-dvh overflow-y-auto p-0"
             >
+              <SheetTitle className="sr-only">menu</SheetTitle>
               <div className="bg-mist p-4 min-h-screen space-y-4">
                 <div className="bg-white rounded-lg p-2 shadow-sm">
                   <TagContainer

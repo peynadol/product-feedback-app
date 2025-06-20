@@ -16,12 +16,12 @@ const SuggestionsHeader = ({
   setSortOptions,
 }: SuggestionsHeaderProps) => {
   return (
-    <div className="bg-slate -mx-4 h-[72px] text-white flex items-center justify-between rounded-none md:rounded-xl md:w-full">
-      <div className="flex items-center gap-6 ml-6">
+    <div className="bg-slate h-[72px] text-white flex items-center justify-between rounded-none md:rounded-xl w-screen md:w-full mx-[-1rem] md:mx-0 px-4">
+      <div className="flex items-center gap-6">
         <SuggestionCount total={total} />
         <SortBy sortOptions={sortOptions} setSortOptions={setSortOptions} />
       </div>
-      <div className="mr-6">
+      <div>
         <Link href="/create-form">
           <Button className="cursor-pointer">+ Add Feedback</Button>
         </Link>
