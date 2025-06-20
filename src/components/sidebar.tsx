@@ -14,13 +14,19 @@ export default function Sidebar({
   onSelectCategory,
 }: SidebarProps) {
   return (
-    <div className="space-y-6">
-      <LogoCard />
-      <TagContainer
-        selectedCategory={selectedCategory}
-        onSelectCategory={onSelectCategory}
-      />
-      <RoadmapHomeCard />
+    <div className="hidden md:flex md:gap-4 md:w-full md:h-[178px]">
+      <div className="md:flex-1 md:basis-0 md:h-full">
+        <LogoCard />
+      </div>
+      <div className="md:flex-1 md:basis-0 md:h-full">
+        <TagContainer
+          selectedCategory={selectedCategory}
+          onSelectCategory={onSelectCategory}
+        />
+      </div>
+      <div className="md:flex-1 md:basis-0 md:h-full">
+        <RoadmapHomeCard />
+      </div>
     </div>
   );
 }

@@ -38,7 +38,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { DialogClose } from "@radix-ui/react-dialog";
-//TODO: include a go back button - sends user back to the feedback card
+//TODO: on deletion, the title updates to "Failed to load title" before redirecting
+// add a loading state or handle this more gracefully
 
 const editSchema = feedbackSchema;
 

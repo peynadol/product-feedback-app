@@ -13,7 +13,7 @@ const TagContainer = ({
   onSelectCategory,
 }: TagContainerProps) => {
   return (
-    <div className="rounded-xl bg-white p-6">
+    <div className="rounded-xl bg-white p-6 h-full">
       <div className="flex flex-wrap gap-3">
         {categories.map((cat) => (
           <Tag

@@ -30,6 +30,7 @@ export type FeedbackStore = {
     content: string,
     replyingToUsername?: string
   ) => void;
+  deleteFeedback: (id: string) => void;
 };
 
 export type Comment = {
