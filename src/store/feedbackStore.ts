@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { FeedbackStore, Suggestion } from "@/types/feedback";
+import { FeedbackStore } from "@/types/feedback";
 import { nanoid } from "nanoid";
 import { persist } from "zustand/middleware";
 

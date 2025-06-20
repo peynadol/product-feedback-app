@@ -98,7 +98,7 @@ const EditFeedbackForm = () => {
   return (
     <>
       <h1 className="mb-6 text-xl font-bold">
-        Editing '{suggestion?.title || "Failed to load title"}'
+        Editing &apos;{suggestion?.title || "Failed to load title"}&apos;
       </h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
