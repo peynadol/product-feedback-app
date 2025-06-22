@@ -7,7 +7,6 @@ type CommentsSectionProps = {
 };
 
 const CommentsSection = ({ item }: CommentsSectionProps) => {
-  console.log("CommentsSection item:", item);
   return (
     <>
       <div className="bg-white rounded-lg p-6 mt-6 shadow-md">

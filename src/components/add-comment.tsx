@@ -23,7 +23,6 @@ const AddComment = () => {
     if (comment.trim().length > 0 && comment.length <= maxLength) {
       addComment(id, comment);
       setComment("");
-      console.log("Comment added:", comment);
     }
   };
 

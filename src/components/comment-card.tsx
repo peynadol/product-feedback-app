@@ -35,14 +35,12 @@ const CommentCard = ({ comment, depth = 0 }: CommentProps) => {
   const imagePath = comment.user.image.replace("./", "/");
   const [isReplying, setIsReplying] = useState(false);
   const [reply, setReply] = useState("");
-  console.log("CommentCard rendering, replies:", comment.replies?.length);
 
   const { id: suggestionId } = useParams<{ id: string }>();
   const addReply = useFeedbackStore((state) => state.addReply);
 
   const handlePostReply = () => {
     if (!reply.trim()) return;
-    console.log("Posting reply:", reply);
     addReply(suggestionId, comment.id, reply, comment.user.username);
     setReply("");
     setIsReplying(false);

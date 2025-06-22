@@ -10,7 +10,6 @@ type RoadmapCardProps = {
 };
 
 const RoadmapCard = ({ item }: RoadmapCardProps) => {
-  console.log(item);
   const statusToColor = {
     planned: "var(--color-coral)",
     "in-progress": "var(--color-violet)",

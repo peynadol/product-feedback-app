@@ -73,7 +73,6 @@ const EditFeedbackForm = () => {
   }, [suggestion, form]);
 
   const onSubmit = (data: z.infer<typeof editSchema>) => {
-    console.log("Form submitted:", data);
     if (!suggestion) return;
     editSuggestion(suggestion.id, {
       title: data.title,
