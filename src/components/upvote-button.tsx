@@ -11,8 +11,6 @@ const UpvoteButton = ({ id }: { id: string }) => {
   // extracted in order to prevent button click activating the link
   const handleUpvote = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const isUpvoted = suggestions.find((item) => item.id === id)?.upvoted;
-    if (isUpvoted) return;
     onUpvote(id);
   };
 

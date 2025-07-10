@@ -20,7 +20,11 @@ export const useFeedbackStore = create<FeedbackStore>()(
         set((state) => ({
           suggestions: state.suggestions.map((item) =>
             item.id === id
-              ? { ...item, upvotes: item.upvotes + 1, upvoted: true }
+              ? {
+                  ...item,
+                  upvotes: item.upvoted ? item.upvotes - 1 : item.upvotes + 1,
+                  upvoted: !item.upvoted,
+                }
               : item
           ),
         })),
